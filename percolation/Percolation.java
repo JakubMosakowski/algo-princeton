@@ -25,7 +25,6 @@ public class Percolation {
 
     // opens the site (row, col) if it is not open already
     public void open(int row, int col) {
-        System.out.println("Row: " + row + ", Column: " + col);
         throwIfOutOfRange(row, col);
         if (grid[row - 1][col - 1]) {
             return;
@@ -44,7 +43,6 @@ public class Percolation {
         unionRight(row, col);
         unionBottom(row, col);
         unionLeft(row, col);
-        draw();
     }
 
     // is the site (row, col) open?
@@ -69,33 +67,6 @@ public class Percolation {
         return unionFind.find(bottom) == unionFind.find(top);
     }
 
-    private void draw() {
-        System.out.println("");
-        System.out.println("");
-        for (int i = 0; i < n; i++) {
-            System.out.print("\uD83D\uDCD8");
-        }
-        System.out.println("\n----");
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (isFull(i + 1, j + 1)) {
-                    System.out.print("\uD83D\uDCD8");
-                }
-                else if (isOpen(i + 1, j + 1)) {
-                    System.out.print("\uD83D\uDCD4");
-                }
-                else {
-                    System.out.print("\uD83D\uDCD3");
-                }
-            }
-            System.out.println("");
-        }
-        System.out.print("----\n");
-        for (int i = 0; i < n; i++) {
-            System.out.print("\uD83D\uDCD8");
-        }
-        System.out.println("");
-    }
 
     private void unionTop(int row, int col) {
         if (row > 1 && isOpen(row - 1, col)) {
